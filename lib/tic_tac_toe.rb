@@ -108,16 +108,19 @@ def winner(board)
     elsif (board[win_combo[0]]) == "O" && (board[win_combo[1]]) == "O" && (board[win_combo[2]]) == "O"
       return "O"
     else
-      puts "Cat's Game!"
+      puts "Cat's Game?"
   end
  end
 end
 
 # play
 def play(board)
-  counter = 0
-  while counter < 9
-    counter += 1
+  input = gets
+  until over?(board) == true
     turn(board)
+  end
+
+  if over?(board)
+  (won?(board)) || (draw?(board)) || (full?(board))
   end
 end
