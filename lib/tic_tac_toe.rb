@@ -41,7 +41,7 @@ end
 # turn
 def turn(board)
   puts "Please enter 1-9:"
-  user_input = gets.chomp
+  user_input = gets.strip
   index = input_to_index(user_input)
   if  valid_move?(board, index)
     player_token = current_player(board)
@@ -116,7 +116,7 @@ end
 
 # play
 def play(board)
-  until over?(board) == true
+  until over?(board)
     turn(board)
   end
 
