@@ -41,11 +41,12 @@ end
 # turn
 def turn(board)
   puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
+  user_input = gets.chomp
+  index = input_to_index(user_input)
   if  valid_move?(board, index)
-      move(board, index, "X")
-      display_board(board)
+    player_token = current_player(board)
+    move(board, index, player_token)
+    display_board(board)
   else
     turn(board)
   end
@@ -108,19 +109,20 @@ def winner(board)
     elsif (board[win_combo[0]]) == "O" && (board[win_combo[1]]) == "O" && (board[win_combo[2]]) == "O"
       return "O"
     else
-      puts "Cat's Game?"
+      puts "Cat's Game!"
   end
  end
 end
 
 # play
 def play(board)
-  input = gets
   until over?(board) == true
     turn(board)
   end
 
-  if over?(board)
-  (won?(board)) || (draw?(board)) || (full?(board))
+  if won?(board)
+  puts "Congratulations #{winner(board)}!"
+elsif draw?(board)
+  puts "Cat's Game!"
   end
 end
